@@ -1,0 +1,112 @@
+<div class="jumbotron text-center" ng-if="!main.loggedIn">
+	
+	<div>
+		<h1>Sign up</h1>
+	</div>
+
+	<div>
+		<p>Login to write your story</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+</div>
+
+<div class="row" ng-if="main.loggedIn">
+	<a href="#" ng-click="showForm = ! showForm" class='btn btn-primary'>Ask a Question</a><br/>
+	<div class="panel panel-primary" ng-show="showForm">
+
+		<div class="panel-heading">Write your story </div>
+
+		<div class='panel-body'>
+			<form method="post" class="form-sigin" ng-submit='question.createQuestion()' name="QuestionForm">
+
+				Title: <input type="text" class="form-control" name="title" ng-model="question.questionData.title" required />
+
+				Status: <br/><select ng-model="question.questionData.status" size="3" style="min-width:200px;" required>
+				
+					<option  value="active">Active</option>
+					<option  value="inactive" >Inactive</option>
+				</select><br />
+
+				<br/>
+				<!-- Categories: <select class="form-control" ng-model="categories" ng-options="cat.title for cat in question.categories">
+				</select> -->
+				<!-- Categories: <label ng-repeat="cat in question.categories" >
+				  <input
+				  	type="checkbox"
+				    name="categories[]"
+				    ng-model="categories.checked"
+				    value="{{cat}}"
+				    ng-checked="selection.indexOf(cat) > -1"
+				    ng-click="toggleSelection(cat)"
+				  > {{cat.title}}  &nbsp;&nbsp;&nbsp;
+				</label><br/><br/> -->
+<!-- 
+				<label ng-repeat="category in question.categories">
+				 	<input type="checkbox" name="cat[]" ng-model="question.questionData.categories[category.id]" checklist-value="category"> {{category.title}}
+				</label> -->
+
+				Categories: <br/><select class="front-search" ng-model="question.questionData.categories" size="12" multiple="true" style="min-width:200px;" required>
+				
+					<option  value="{{category}}" ng-repeat="category in question.categories">{{category.title}}</option>
+				</select><br />
+
+				{{question.questionData.categories}}
+				Content: <textarea class="form-control" name="description" rows="5" ng-model="question.questionData.description" required > </textarea>
+
+			<button type="submit" ng-disabled="QuestionForm.$invalid" class="btn btn-success">Add</button>
+			
+		</form>
+		</div>
+		
+	</div>
+	
+</div>
+
+<div class="row" ng-if="main.loggedIn">
+
+	<div class="col-md-3">
+
+
+		
+	</div>
+
+	<div class="col-md-6" >
+
+		
+
+		<div class="panel panel-success">
+
+			<div class="panel-body" ng-repeat="each in question.questions" style="border-bottom: 1px solid #000;padding-bottom: 3px" type="application/html">
+				<!-- <p> <h3> <b> <a href="/show-question/{{each._id}}"> {{ each.title }} </a> </b> </h3> </p> -->
+				<p> <h4> <b> <a href="show-question/{{each._id}}" ng-click="getQuestion('{{each._id}}')"> {{ each.title }} </a> </b> </h4> </p> 
+				<p > {{ each.description }} </p>
+
+				<p>
+					Category:
+					<span ng-repeat="cat in each.categories" >
+						<b>{{cat.title}}</b>&nbsp;&nbsp;&nbsp;
+					</span>
+				</p>
+				<p>
+					{{each.answers.length}} <span ng-if="each.answers.length > 1">Answers</span>
+											<span ng-if="each.answers.length <= 1">Answer</span>
+				</p>
+				<!-- <div ng-bind-html="each.description"></div> -->
+				
+			</div>
+		
+		</div>
+
+		
+	</div>
+
+
+	<div class="col-md-3">
+
+
+		
+	</div>
+
+	
+</div>

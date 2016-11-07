@@ -1,0 +1,70 @@
+<div class="jumbotron text-center" ng-if="!main.loggedIn">
+	
+	<div>
+		<h1>Sign up</h1>
+	</div>
+
+	<div>
+		<p>Login to write your story</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+</div>
+
+<div class="row" ng-if="main.loggedIn">
+
+	<div class="col-md-3">
+
+
+		
+	</div>
+
+	<div class="col-md-4" ng-controller="CategoryController as category">
+		<a href="#" ng-click="showForm = ! showForm" class='btn btn-primary'>Add Category</a>
+		<div class="row" ng-show="showForm">
+		
+			<div class="panel panel-primary" >
+
+				<div class="panel-heading">Add Category </div>
+
+				<div class='panel-body'>
+
+					<form method="post" class="form-sigin" ng-submit='category.createCategory()'>
+
+						Title: <input type="text" class="form-control" name="title" ng-model="category.categoryData.title" required />
+
+						Description: <textarea class="form-control" name="description" rows="10" ng-model="category.categoryData.description" > </textarea>
+
+						<button type="submit" class="btn btn-success">Add</button>
+					
+					</form>
+
+				</div>
+				
+			</div>
+			
+		</div>
+
+		<div class="panel panel-success">
+		
+			<div class="panel-heading text-center" >Categories</div>
+			<div class="panel-body text-center" ng-repeat="each in category.categories | orderBy:'-' ">
+				
+				<p> <b>{{ each.title }}</b> -- {{ each.description }} </p>
+				
+			</div>
+		
+		</div>
+
+		
+	</div>
+
+
+	<div class="col-md-3">
+
+
+		
+	</div>
+
+	
+</div>

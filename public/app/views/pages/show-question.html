@@ -1,0 +1,57 @@
+<div class="row" ng-if="main.loggedIn">
+
+	<div class="col-md-3">
+
+
+		
+	</div>
+
+	<div class="col-md-6" >
+
+		
+
+		<div class="panel panel-success">
+
+			<div class="panel-body" style="border-bottom: 1px solid #000;padding-bottom: 3px" type="application/html">
+				<!-- <p> <h3> <b> <a href="/show-question/{{each._id}}"> {{ each.title }} </a> </b> </h3> </p> -->
+				<p> <h4> <b>  {{ question.title }} </a> </b> </h4> </p> 
+				<p > {{ question.description }} </p>
+
+				<p>
+					Category:
+					<span ng-repeat="cat in question.categories" >
+						<b>{{cat.title}}</b>&nbsp;&nbsp;&nbsp;
+					</span>
+				</p>
+				<p>
+					{{question.answers.length}} <span ng-if="each.answers.length > 1">Answers</span>
+											<span ng-if="each.answers.length <= 1">Answer</span>
+				</p>
+				<span ng-repeat="ans in question.answers" >
+					<b>{{ans.description}}</b>&nbsp;&nbsp;&nbsp;
+				</span>
+
+				<form method="post" class="form-sigin" ng-submit='questionShow.addAnswer()' name="AnswerForm">
+					
+					Answer: <textarea class="form-control" name="description" rows="5" ng-model="questionShow.answerData.description" required > </textarea>
+
+					<button type="submit" ng-disabled="AnswerForm.$invalid" class="btn btn-success">Add</button>
+				</form>
+				<!-- <div ng-bind-html="each.description"></div> -->
+				
+			</div>
+		
+		</div>
+
+		
+	</div>
+
+
+	<div class="col-md-3">
+
+
+		
+	</div>
+
+	
+</div>

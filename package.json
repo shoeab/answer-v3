@@ -1,0 +1,21 @@
+{
+  "name": "priyo",
+  "version": "1.0.0",
+  "description": "News",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shoeab",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.7",
+    "mongoose": "^4.5.8",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.10.0",
+    "socket.io": "^1.4.8"
+  }
+}
